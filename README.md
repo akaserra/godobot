@@ -42,4 +42,6 @@ Se ne ho voglia dato che ho poca fantasia.
 Mi piacerebbe se facciate una custom build del bot e me la mandiate su Telegram @TrialHelper anche con piccoli miglioramenti o aggiornamenti.
 ```
 
+Ci tenevo a ringraziare gli amici della squadra di cacciatori per avermi dato delle idee kiss kiss
+
 Detto questo buon skidding a tutti
