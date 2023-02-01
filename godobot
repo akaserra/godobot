@@ -6,7 +6,7 @@ from mcrcon import MCRcon
 from mcstatus import JavaServer
 
 
-TOKEN = "MTAyMTQyNzc2NjUyMjAyMzk0Nw.GcDQGh._Mn2n4RrpxZgfgmusmGD1NbYA9ozFseTdGMALg" # token di sto cazzo
+TOKEN = "token" # token di sto cazzo
 GUILD_ID = 1021423190783823964 # ID del server
 try:
     host = "127.0.0.1" # ip server minecraft
