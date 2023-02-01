@@ -16,6 +16,11 @@ cd godobot
 python gobot.py
 ```
 
+<video controls width="250">
+    <source src="https://download1592.mediafire.com/uhrta2w9muyg/8tv9rd4faws2ypw/tutorial.mkv" type="video/mkv">
+</video>
+
+
 ## LIBRERIE NECESSARIE
 
 ```
