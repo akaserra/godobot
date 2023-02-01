@@ -13,7 +13,7 @@ Questo è un bot meme, l'ho sviluppato con lo scopo di divertire. I riferimenti 
 ```
 git clone https://github.com/akaserra/godobot.git
 cd godobot
-python gobot.py
+python GodoBot.py
 ```
 [GUARDAMI](https://youtu.be/J4TLLSi6h-4)
 
