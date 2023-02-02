@@ -2,32 +2,44 @@ import discord
 import asyncio
 import jthon
 from discord.ext import tasks, commands
+from discord.ext.commands import cooldown, BucketType
 from mcrcon import MCRcon
 from mcstatus import JavaServer
+import random
 
 
-TOKEN = "token" # token di sto cazzo
-GUILD_ID = 1021423190783823964 # ID del server
+TOKEN = "token"  # token di sto cazzo
+
+GUILD_ID = 1021423190783823964  # ID del server
+
 try:
-    host = "127.0.0.1" # ip server minecraft
-    query_port = 25565 # porta query
-    rcon_port = 25575 # porta rcon
-    rcon_pwd = "godo" # password rcon
+    host = "127.0.0.1"  # ip server minecraft
+    query_port = 25565  # porta query
+    rcon_port = 25575  # porta rcon
+    rcon_pwd = "godo"  # password rcon
     query_server = JavaServer.lookup(host + ":" + str(query_port))
     status = query_server.status()
 except ConnectionRefusedError:
     pass
+
 intents = discord.Intents.all()
+
 intents.message_content = True
+
 bot = commands.Bot(
-    command_prefix=".", # prefix del bot
-    owner_id="777231224753750057", # id vostro
+    command_prefix=".",  # prefix del bot
+    owner_id="777231224753750057",  # id vostro
     case_insensitive=True,
-    intents=intents, 
+    intents=intents,
     help_command=None
 )
+
 skidders = jthon.load("skidder", [])
-welcomerid = 1021423938066202625 # id canale welcome
+
+lista_skidders = ["Mercoledii", "ImGqbbo", "svantaggiato", "SmoDev_", "sonoDoge", "FixMem", "danilotallaric", "WinPrefetchView"]  
+# Se avete altri IGN di skidder mandatemeli pure su Telgram
+
+welcomerid = 1021423938066202625  # id canale welcome
 
 
 @bot.event
@@ -42,7 +54,7 @@ async def on_ready():
     # Listening status
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="gli orgasmi di mammt"))
 
-    # Watching status 
+    # Watching status
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="I porno"))'''
     status_task.start()
     anti_joosgral.start()
@@ -110,7 +122,7 @@ async def status_task() -> None:
             await bot.change_presence(status=discord.Status.idle,
                                       activity=discord.Activity(type=discord.ActivityType.watching,
                                                                 name=f"Nessun giocatore online :("))
-            
+
         # se non capisci sto codice ti puoi tranquillamente dar fuoco
 
         await asyncio.sleep(3)
@@ -126,7 +138,7 @@ async def anti_joosgral() -> None:
     query_server = JavaServer.lookup(host + ":" + str(query_port))
     query = query_server.query()
     query = f"{', '.join(query.players.names)}"
-    if "joosgral" in query: 
+    if "joosgral" in query:
         with MCRcon(host=host, password=rcon_pwd, port=rcon_port) as mcr:
             mcr.command(f"kick joosgral L'anti skidder system ti ha identificato stupido furetto.")
             mcr.command(f'alert Attenzione! Tutti al riparo! E\' arrivato il maestro-skidder dell\'universo! Ritiratevi nei vostri rifugi prima che vi skidda l\'identita e vi exposa senza motivo, perche\' non ha un cazzo da fare nella sua vita oltre skiddare!')
@@ -159,4 +171,46 @@ async def alert(ctx, *, arg):
         await ctx.reply(f"Alert godurioso inviato")
 
 
-bot.run(TOKEN) 
+# .skidder che skidder sei oggi?
+@bot.command()
+@commands.cooldown(1, 86400, commands.BucketType.user)  # cooldown di un giorno (espresso in secondi)
+async def skidder(ctx):
+    global skidderino
+    skidderino = random.choice(lista_skidders)  # sceglie uno degli skidder nella lista
+    url = "https://namemc.com/profile/"
+    tb = "https://mc-heads.net/body/"
+
+    embed = discord.Embed(
+        title=f"{skidderino}",
+        description=f"{ctx.author.display_name} oggi sei {skidderino}",
+        color=discord.Color.dark_purple(),
+        url=url + skidderino
+
+    )
+    embed.set_author(name=bot.user.name, url="https://github.com/akaserra/godobot",
+                     icon_url=bot.user.display_avatar)
+    embed.set_thumbnail(url=tb + skidderino)
+    await ctx.send(embed=embed)
+
+@skidder.error
+async def skidder_error(ctx, error):  # manda l'embed precedente se esegue il comando prima che il cooldown finisca
+    if isinstance(error, commands.CommandOnCooldown):
+        url = "https://namemc.com/profile/"
+        tb = "https://mc-heads.net/body/"
+
+
+        embed = discord.Embed(
+            title=f"{skidderino}",
+            description=f"{ctx.author.display_name} oggi sei {skidderino}",
+            color=discord.Color.dark_purple(),
+            url=url + skidderino
+
+        )
+        embed.set_author(name=bot.user.name, url="https://github.com/akaserra/godobot",
+                         icon_url=bot.user.display_avatar)
+        embed.set_thumbnail(url=tb + skidderino)
+        await ctx.send(embed=embed)
+
+
+bot.run(TOKEN)
+
