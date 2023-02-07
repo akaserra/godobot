@@ -36,7 +36,7 @@ bot = commands.Bot(
 
 skidders = jthon.load("skidder", [])
 
-lista_skidders = ["Mercoledii", "ImGqbbo", "svantaggiato", "SmoDev_", "sonoDoge", "FixMem", "danilotallaric", "WinPrefetchView"]  
+lista_skidders = ["Mercoledii", "ImGqbbo", "svantaggiato", "SmoDev_", "sonoDoge", "FixMem", "danilotallaric", "WinPrefetchView", "ThaBakk"]  
 # Se avete altri IGN di skidder mandatemeli pure su Telgram
 
 welcomerid = 1021423938066202625  # id canale welcome
